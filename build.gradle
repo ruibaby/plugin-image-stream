@@ -77,16 +77,8 @@ tasks.register('generateApiKeysFile') {
     }
 }
 
-tasks.named("processResources").configure {
+tasks.named("jar").configure {
     dependsOn("generateApiKeysFile")
-}
-
-tasks.named('jar') {
-    dependsOn('generateApiKeysFile')
-    
-    from(layout.buildDirectory.dir("resources/main")) {
-        include 'apiKeys.properties'
-    }
 }
 
 halo {
