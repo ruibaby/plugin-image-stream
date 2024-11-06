@@ -82,9 +82,7 @@ tasks.named("processResources").configure {
 }
 
 tasks.named('jar') {
-    doFirst {
-        tasks.named('generateApiKeysFile').get().execute()
-    }
+    dependsOn('generateApiKeysFile')
     
     from(layout.buildDirectory.dir("resources/main")) {
         include 'apiKeys.properties'
