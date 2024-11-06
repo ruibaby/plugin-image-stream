@@ -81,6 +81,16 @@ tasks.named("processResources").configure {
     dependsOn("generateApiKeysFile")
 }
 
+tasks.named('jar') {
+    doFirst {
+        tasks.named('generateApiKeysFile').get().execute()
+    }
+    
+    from(layout.buildDirectory.dir("resources/main")) {
+        include 'apiKeys.properties'
+    }
+}
+
 halo {
     version = "2.20"
 }
